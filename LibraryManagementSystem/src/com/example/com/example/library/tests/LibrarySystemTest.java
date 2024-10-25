@@ -1,7 +1,6 @@
 package com.example.library.tests;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
+import org.junit.Assert.assertEquals;
 import org.junit.Test;
 import java.util.List;
 import com.example.library.Book;

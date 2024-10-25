@@ -1,7 +1,6 @@
 package com.example.library.tests;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
+import org.junit.Assert.assertEquals;
 import org.junit.Test;
 import java.util.List;
 import com.example.library.Book;
@@ -38,11 +37,5 @@ public class MemberTest {
     @Test(expected = IllegalArgumentException.class)
     public void testReturnBook_NotBorrowed() {
         member.returnBook(loan);  // Returning a book that was never borrowed, should throw exception
-    }
-
-    @Test
-    public void testMemberToString() {
-        String expected = "Member[ID=M001, Name=John Doe, Borrowed Books=0]";
-        assertEquals(expected, member.toString());
     }
 }

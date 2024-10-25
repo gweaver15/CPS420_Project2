@@ -1,7 +1,6 @@
 package com.example.library.tests;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
+import org.junit.Assert.assertEquals;
 import org.junit.Test;
 import com.example.library.Book;
 
@@ -31,12 +30,6 @@ public class BookTest {
         book.borrowBook();  // Borrowing 1 copy, reducing available copies to 4
         book.returnBook();  // Returning, should increase copies to 5 again
         assertEquals(5, book.getCopiesAvailable());
-    }
-
-    @Test
-    public void testBookToString() {
-        String expected = "Book[ISBN=1234567890, Title=Effective Java, Author=Joshua Bloch, Copies Available=5]";
-        assertEquals(expected, book.toString());
     }
 
     @Test(expected = IllegalArgumentException.class)

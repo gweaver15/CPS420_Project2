@@ -11,7 +11,7 @@
 
 1.  **Clone the Repository**: Clone the repository to your local machine using the following command:
     
-    `git clone https://github.com/your-username/LibraryManagementSystem.git
+    git clone https://github.com/gweaver15/CPS420_Project2.git
     cd LibraryManagementSystem` 
     
 2.  **Compile the Code**: This project uses **Apache Ant** for build automation. Compile the source code using the following command:
