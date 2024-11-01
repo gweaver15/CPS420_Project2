@@ -4,20 +4,11 @@ language: java
 jdk:
   - openjdk11
 
-# Caching Maven dependencies to speed up builds
-cache:
-  directories:
-    - $HOME/.m2
-
-# Commands to install dependencies, build the project, and run tests
 script:
-  - javac -cp src src/Main.java
-  - java -cp src Main
-
-# You can also specify additional environment settings or notifications here
-notifications:
-  email:
-    recipients:
-      - your-email@example.com
-    on_success: change # default: change
-    on_failure: always # default: always
+  - ant clean
+  - ant compile
+  - ant test
+addons:
+  apt:
+    packages:
+      - ant-optional
