@@ -1,7 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
+import org.junit.BeforeEach;
 
 import org.junit.Test;
 import java.util.List;
@@ -13,7 +13,7 @@ public class LibrarySystemTest {
     private Book book2;
     private Member member;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         librarySystem = new LibrarySystem();
         book1 = new Book("1234567890", "Refactoring", "Martin Fowler", 5);
