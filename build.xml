@@ -9,10 +9,10 @@
 	  <fileset dir="${library}" includes="**/*.jar" />
   </path>
 
-  <target name="clean">
+     <!--<target name="clean">
     <delete dir="${build}"/>
     <delete dir="${distribution}"/>
-  </target>
+  </target>-->
 
   <target name="init">
     <tstamp/>
@@ -44,7 +44,7 @@
             <pathelement path="${build}/tests"/>
 	          <fileset dir="${library}" includes="**/*.jar" />
 	      </classpath>
-	      <formatter type="plain" />
+	      <formatter type="xml" />
 	      <formatter type="brief" usefile="false" />
 	      <batchtest>
 	          <fileset dir="${build}/tests" includes="**/TestCases.class"/>
