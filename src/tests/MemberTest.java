@@ -4,10 +4,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
-import com.example.library.Book;
-import com.example.library.LibrarySystem;
-import com.example.library.Member;
-import com.example.library.Loan;
 
 public class MemberTest {
     
