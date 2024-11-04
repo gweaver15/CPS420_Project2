@@ -1,7 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeEach;
+import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class MemberTest {
     private Book book;
     private Loan loan;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         member = new Member("M001", "John Doe");
         book = new Book("1234567890", "Clean Code", "Robert Martin", 3);

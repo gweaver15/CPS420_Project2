@@ -1,7 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeEach;
+import org.junit.Before;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ public class BookTest {
     
     private Book book;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         book = new Book("1234567890", "Effective Java", "Joshua Bloch", 5);
     }
