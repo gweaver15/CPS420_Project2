@@ -7,22 +7,27 @@
     <property name="test.src.dir" value="src/com/example/com/example/library/tests"/>
     <property name="lib" value="lib"/>
 
-    <classpath path = "${classpath}">
-      <fileset dir="lib">
-        <include name="**/*.jar"/>
-      </fileset>
-    </classpath>
+    <path id="classpath.test">
+        <fileset dir="${lib}" includes = "**.*.jar" />
+    </path>
+
+    <path id="junit.class.path">
+        <pathelement location="lib/junit.jar" />
+        <pathelement location="${build.dir}" />
+    </path>
 
     <!-- Compile the Java source files -->
     <target name="compile">
         <mkdir dir="${main.build.dir}"/>
-        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"/>
+        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false">
+          <classpath refid="junit.class.path" />
+        </javac>
     </target>
 
   <target name="test-compile" depends="compile">
     <mkdir dir = "${test.build.dir}"/>
     <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
-        <classpath refid="classpath"/>
+        <classpath refid="classpath.test"/>
     </javac>
   </target>
 
@@ -39,19 +44,11 @@
     <!-- Run the project -->
   <target name="test" depends="test-compile">
     <junit printsummary="on" haltonfailure="yes" fork="true">
-        <classpath>
-          <path refid="classpath"/>
-          <pathelement location="${test.build.dir}"/>
-        </classpath>
+        <classpath refid="junit.class.path" />
         <formatter type="brief" usefile="false" />
         <batchtest>
             <fileset dir="${test.src.dir}" includes="**/*Test.java" />
         </batchtest>
     </junit>
-  </target>
-
-    <target name="clean">
-      <delete dir="${build}"/>
-      <delete dir="${dist}"/>
   </target>
 </project>
