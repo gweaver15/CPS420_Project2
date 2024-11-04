@@ -9,6 +9,11 @@
 	  <fileset dir="${library}" includes="**/*.jar" />
   </path>
 
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${distribution}"/>
+  </target>
+
   <target name="init">
     <tstamp/>
     <mkdir dir="${build}"/>
@@ -45,12 +50,6 @@
 	          <fileset dir="${build}/tests" includes="**/TestCases.class"/>
 	      </batchtest>
 	  </junit>
-  </target>
-
-  
-  <target name="clean" description="clean up">
-    <delete dir="${build}"/>
-    <delete dir="${distribution}"/>
   </target>
   
 </project>
