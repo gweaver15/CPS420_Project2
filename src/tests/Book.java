@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 /**
  * The Book class represents a book in the library system.

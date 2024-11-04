@@ -10,7 +10,7 @@ public class BookTest {
     
     private Book book;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         book = new Book("1234567890", "Effective Java", "Joshua Bloch", 5);
     }

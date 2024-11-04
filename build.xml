@@ -1,52 +1,56 @@
-<project name="LibrarySystem">
-    <!-- Define directories -->
-    <property name="main.src.dir" value="src"/>
-    <property name="main.build.dir" value="build"/>
-    <property name="test.build.dir" value="build/test"/>
-    <property name="test.src.dir" value="src/tests"/>
-    <property name="lib" value="lib"/>
+<project name="LibrarySystem" default="distribution" basedir=".">
+  <property name="source" location="src/com"/>
+  <property name="library" location="lib"/>
+  <property name="build" location="build"/>
+  <property name="tests" location="src/tests"/>
+  <property name="distribution" location="distribution"/>
+	
+  <path id="classPath">
+	  <fileset dir="${library}" includes="**/*.jar" />
+  </path>
 
-    <path id="classPath">
-        <fileset dir="${lib}" includes = "**.*.jar" />
-    </path>
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/tests"/>
+  </target>
 
-    <target name="init">
-        <mkdir dir="${main.build.dir}"/>
-        <mkdir dir="${test.build.dir}"/>
-    </target>
-
-    <target name="clean">
-        <delete dir="${dist.dir}" />
-    </target>
-
-    <!-- Compile the Java source files -->
-    <target name="compile" depends = "init">
-        <javac srcdir="${main.src.dir}" destdir="${build}">
-  		    <classpath refid="classPath"/>
-        </javac>
+  <target name="compile" depends="init" description="compile the source">
   	
-  	    <javac srcdir="${tests}" destdir="${build}/tests">
-  	        <classpath refid="classPath"/>
-        </javac> 
-    </target>
+    <javac srcdir="${source}" destdir="${build}">
+  		<classpath refid="classPath"/>
+    </javac>
+  	
+  	<javac srcdir="${tests}" destdir="${build}/tests">
+  	      <classpath refid="classPath"/>
+    </javac> 
+  	
+  </target>
 
-    <!-- Create a JAR file for distribution -->
-    <target name="jar" depends="compile">
-        <jar destfile="${main.build.dir}/LibrarySystem.jar" basedir="${main.build.dir}"/>
-    </target>
+  <target name="distribution" depends="compile" description="generate the distribution">
+    <mkdir dir="${distribution}/lib"/>
+    <jar jarfile="${distribution}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
 
-    <!-- Run the project -->
   <target name="test" depends="compile">
-    <junit printsummary="true" haltonfailure="true" showoutput="true">
+	  <junit printsummary="true" haltonfailure="true" showoutput="true">
 	      <classpath>
-            <pathelement path="${main.build.dir}"/>
-            <pathelement path="${test.build.dir}"/>
-	          <fileset dir="${lib}" includes="**/*.jar" />
+            <pathelement path="${build}"/>
+            <pathelement path="${build}/tests"/>
+	          <fileset dir="${library}" includes="**/*.jar" />
 	      </classpath>
 	      <formatter type="plain" />
 	      <formatter type="brief" usefile="false" />
 	      <batchtest>
-	          <fileset dir="${test.build.dir}" includes="**/Test**.java"/>
+	          <fileset dir="${build}/tests" includes="**/TestCases.class"/>
 	      </batchtest>
 	  </junit>
+  </target>
+
+  
+  <target name="clean" description="clean up">
+    <delete dir="${build}"/>
+    <delete dir="${distribution}"/>
+  </target>
+  
 </project>

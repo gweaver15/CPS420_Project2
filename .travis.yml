@@ -1,9 +1,6 @@
 language: java
-
-# Specify JDK version (you can adjust this depending on your Java version)
 jdk:
   - openjdk11
-
 script:
   - ant clean
   - ant compile
