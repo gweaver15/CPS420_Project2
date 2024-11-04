@@ -1,4 +1,4 @@
-package com.example;
+package com;
 
 /**
  * The Book class represents a book in the library system.
