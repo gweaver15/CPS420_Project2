@@ -1,0 +1,14 @@
+Testsuite: tests.MemberTest
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec
+
+Testcase: testReturnBook_NotBorrowed took 0 sec
+Testcase: testBorrowBook_Success took 0 sec
+Testcase: testReturnBook_Success took 0 sec
+	Caused an ERROR
+This loan does not exist for this member.
+java.lang.IllegalArgumentException: This loan does not exist for this member.
+	at tests.Member.returnBook(Unknown Source)
+	at tests.MemberTest.testReturnBook_Success(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+

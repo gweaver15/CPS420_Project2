@@ -45,9 +45,9 @@
             <pathelement path="${build}/tests"/>
 	          <fileset dir="${library}" includes="**/*.jar" />
 	      </classpath>
-	      <formatter type="xml" />
+	      <formatter type="plain" />
 	      <formatter type="brief" usefile="false" />
-	      <batchtest>
+	      <batchtest  todir = "${distribution}">
 	          <fileset dir="${build}/tests" includes="**/**Test**.class"/>
 	      </batchtest>
 	  </junit>

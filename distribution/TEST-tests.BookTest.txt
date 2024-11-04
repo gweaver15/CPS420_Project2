@@ -1,0 +1,7 @@
+Testsuite: tests.BookTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+
+Testcase: testInvalidISBN took 0 sec
+Testcase: testBorrowBook_NoCopiesAvailable took 0 sec
+Testcase: testBorrowBook_Success took 0 sec
+Testcase: testReturnBook_Success took 0 sec

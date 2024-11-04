@@ -1,0 +1,10 @@
+Testsuite: tests.LibrarySystemTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+
+Testcase: testIssueLoan_NoCopiesAvailable took 0 sec
+	FAILED
+Expected exception: java.lang.IllegalStateException
+junit.framework.AssertionFailedError: Expected exception: java.lang.IllegalStateException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+Testcase: testIssueLoan took 0 sec
