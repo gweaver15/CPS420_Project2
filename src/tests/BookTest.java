@@ -1,9 +1,9 @@
-package com.example.library.tests;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
+
 import org.junit.Test;
-import com.example.library.Book;
 
 public class BookTest {
     

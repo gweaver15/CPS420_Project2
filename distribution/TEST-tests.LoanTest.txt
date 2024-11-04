@@ -1,0 +1,16 @@
+Testsuite: tests.LoanTest
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec
+
+Testcase: testIsReturned_AfterReturn took 0 sec
+	Caused an ERROR
+This loan does not exist for this member.
+java.lang.IllegalArgumentException: This loan does not exist for this member.
+	at tests.Member.returnBook(Unknown Source)
+	at tests.LibrarySystem.returnLoan(Unknown Source)
+	at tests.LoanTest.testIsReturned_AfterReturn(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+Testcase: testLoanCreation took 0 sec
+Testcase: testIsReturned_FalseInitially took 0 sec
+Testcase: testIsOverdue_NotOverdue took 0 sec
