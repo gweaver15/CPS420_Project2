@@ -1,61 +1,52 @@
 <project name="LibrarySystem">
     <!-- Define directories -->
     <property name="main.src.dir" value="src"/>
-    <property name="main.build.dir" value="src/com/example/com/example/library"/>
-    <property name="dist.dir" value="build"/>
+    <property name="main.build.dir" value="build"/>
     <property name="test.build.dir" value="build/test"/>
-    <property name="test.src.dir" value="src/com/example/com/example/library/tests"/>
+    <property name="test.src.dir" value="src/tests"/>
     <property name="lib" value="lib"/>
 
-    <path id="classpath.test">
+    <path id="classPath">
         <fileset dir="${lib}" includes = "**.*.jar" />
     </path>
 
-    <path id="junit.class.path">
-        <pathelement location="lib/junit.jar" />
-        <pathelement location="lib/ant-junit.jar" />
-        <pathelement location="lib/hamcrest-3.0.jar" />
-        <pathelement location="${dist.dir}" />
-    </path>
-
+    <target name="init">
+        <mkdir dir="${main.build.dir}"/>
+        <mkdir dir="${test.build.dir}"/>
+    </target>
 
     <target name="clean">
         <delete dir="${dist.dir}" />
     </target>
 
     <!-- Compile the Java source files -->
-    <target name="compile">
-        <mkdir dir="${dist.dir}"/>
-        <javac srcdir="${main.src.dir}" destdir="${dist.dir}">
-          <classpath refid="junit.class.path" />
+    <target name="compile" depends = "init">
+        <javac srcdir="${main.src.dir}" destdir="${build}">
+  		    <classpath refid="classPath"/>
         </javac>
+  	
+  	    <javac srcdir="${tests}" destdir="${build}/tests">
+  	        <classpath refid="classPath"/>
+        </javac> 
     </target>
-
-  <target name="test-compile" depends="compile">
-    <mkdir dir = "${test.build.dir}"/>
-    <javac srcdir="${test.src.dir}" destdir="${test.build.dir}">
-        <classpath refid="classpath.test"/>
-    </javac>
-  </target>
 
     <!-- Create a JAR file for distribution -->
     <target name="jar" depends="compile">
-        <mkdir dir="${dist.dir}"/>
-        <jar destfile="${dist.dir}/LibrarySystem.jar" basedir="${build.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="Main"/>
-            </manifest>
-        </jar>
+        <jar destfile="${main.build.dir}/LibrarySystem.jar" basedir="${main.build.dir}"/>
     </target>
 
     <!-- Run the project -->
-  <target name="test" depends="test-compile">
-    <junit printsummary="on" haltonfailure="yes" fork="true">
-        <classpath refid="junit.class.path" />
-        <formatter type="xml"/>
-        <batchtest>
-            <fileset dir="${test.src.dir}" includes="**/*Test.java" />
-        </batchtest>
-    </junit>
-  </target>
+  <target name="test" depends="compile">
+    <junit printsummary="true" haltonfailure="true" showoutput="true">
+	      <classpath>
+            <pathelement path="${main.build.dir}"/>
+            <pathelement path="${test.build.dir}"/>
+	          <fileset dir="${lib}" includes="**/*.jar" />
+	      </classpath>
+	      <formatter type="plain" />
+	      <formatter type="brief" usefile="false" />
+	      <batchtest>
+	          <fileset dir="${test.build.dir}" includes="**/Test**.java"/>
+	      </batchtest>
+	  </junit>
 </project>

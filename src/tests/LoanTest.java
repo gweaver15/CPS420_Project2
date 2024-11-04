@@ -1,10 +1,10 @@
-package com.example.library.tests;
+package test;
 
-import org.junit.Assert.assertEquals;
-import org.junit.Assert.assertNotNull;
-import org.junit.Assert.assertFalse;
-import org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import java.util.List;
 import com.example.library.Book;
 import com.example.library.LibrarySystem;
