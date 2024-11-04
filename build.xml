@@ -2,25 +2,38 @@
     <!-- Define directories -->
     <property name="main.src.dir" value="src"/>
     <property name="main.build.dir" value="src/com/example/com/example/library"/>
-    <property name="dist.dir" value="dist"/>
+    <property name="dist.dir" value="build"/>
     <property name="test.build.dir" value="build/test"/>
     <property name="test.src.dir" value="src/com/example/com/example/library/tests"/>
+    <property name="lib" value="lib"/>
 
     <path id="classpath.test">
-        <pathelement location="lib/junit-jupiter-5.11.3.jar"/>
-        <pathelement location="lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${main.build.dir}"/>
+        <fileset dir="${lib}" includes = "**.*.jar" />
     </path>
+
+    <path id="junit.class.path">
+        <pathelement location="lib/junit.jar" />
+        <pathelement location="lib/ant-junit.jar" />
+        <pathelement location="lib/hamcrest-3.0.jar" />
+        <pathelement location="${dist.dir}" />
+    </path>
+
+
+    <target name="clean">
+        <delete dir="${dist.dir}" />
+    </target>
 
     <!-- Compile the Java source files -->
     <target name="compile">
-        <mkdir dir="${main.build.dir}"/>
-        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"/>
+        <mkdir dir="${dist.dir}"/>
+        <javac srcdir="${main.src.dir}" destdir="${dist.dir}">
+          <classpath refid="junit.class.path" />
+        </javac>
     </target>
 
   <target name="test-compile" depends="compile">
     <mkdir dir = "${test.build.dir}"/>
-    <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
+    <javac srcdir="${test.src.dir}" destdir="${test.build.dir}">
         <classpath refid="classpath.test"/>
     </javac>
   </target>
@@ -38,11 +51,8 @@
     <!-- Run the project -->
   <target name="test" depends="test-compile">
     <junit printsummary="on" haltonfailure="yes" fork="true">
-        <classpath>
-          <path refid="classpath.test"/>
-          <pathelement location="${test.build.dir}"/>
-        </classpath>
-        <formatter type="brief" usefile="false" />
+        <classpath refid="junit.class.path" />
+        <formatter type="xml"/>
         <batchtest>
             <fileset dir="${test.src.dir}" includes="**/*Test.java" />
         </batchtest>
