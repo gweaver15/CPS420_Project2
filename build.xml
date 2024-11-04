@@ -1,4 +1,4 @@
-<project name="LibrarySystem" default="distribution" basedir=".">
+<project name="LibrarySystem" default="dist" basedir=".">
   <property name="source" location="src/com"/>
   <property name="library" location="lib"/>
   <property name="build" location="build"/>
@@ -9,15 +9,16 @@
 	  <fileset dir="${library}" includes="**/*.jar" />
   </path>
 
-     <!--<target name="clean">
+  <target name="clean">
     <delete dir="${build}"/>
     <delete dir="${distribution}"/>
-  </target>-->
+  </target>
 
   <target name="init">
-    <tstamp/>
     <mkdir dir="${build}"/>
     <mkdir dir="${build}/tests"/>
+    <mkdir dir="${distribution}"/>
+
   </target>
 
   <target name="compile" depends="init" description="compile the source">
@@ -34,11 +35,11 @@
 
   <target name="distribution" depends="compile" description="generate the distribution">
     <mkdir dir="${distribution}/lib"/>
-    <jar jarfile="${distribution}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+    <jar jarfile="${distribution}/lib/LibraryManagement.jar" basedir="${build}"/>
   </target>
 
   <target name="test" depends="compile">
-	  <junit printsummary="true" haltonfailure="true" showoutput="true">
+	  <junit printsummary="true" haltonfailure="false" showoutput="true">
 	      <classpath>
             <pathelement path="${build}"/>
             <pathelement path="${build}/tests"/>
@@ -47,7 +48,7 @@
 	      <formatter type="xml" />
 	      <formatter type="brief" usefile="false" />
 	      <batchtest>
-	          <fileset dir="${build}/tests" includes="**/TestCases.class"/>
+	          <fileset dir="${build}/tests" includes="**/**.class"/>
 	      </batchtest>
 	  </junit>
   </target>
