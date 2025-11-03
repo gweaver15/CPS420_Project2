@@ -4,6 +4,8 @@
 
 The **Library Management System (LMS)** is a Java-based application that allows libraries to streamline their operations. The system provides functionalities such as book cataloging, member registration, loan management, and overdue tracking. The project includes a set of unit tests to ensure the application's reliability and uses Continuous Integration (CI) to automate building, testing, and deployment.
 
+This project was originally classwork for CPS 420: Software Engineering
+
 ## Features
 
 - **Book Management**: Add, update, and manage book records, including inventory tracking.
